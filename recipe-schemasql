@@ -2,33 +2,29 @@ create table Recipe(
     Recipe_ID int not null,
     Recipe_name varchar2(150) not null,
     Cook_Time int not null,
-    Meal_Type char(50) not null,
+    Meal_Type varchar2(50) not null,
     Spice_Level int not null,
     Difficulty_Level int not null,
-    Cook_Type char(50),
-    Cuisine_Type varchar2 (100),
-    Ingredient_ID int,
-    Allergy int,
-    Required_Utensil int,
+    Cook_Type varchar2(50),
+    Cuisine_Type int,
+
     
     primary key (Recipe_ID),
-    foreign key(Cuisine_Type) references Cuisine(Cuisine_Type),
-    foreign key(Ingredient_ID) references Ingredients(Ingredient_ID),
-    foreign key(Allergy) references Common_Allergies(Allergy_ID),
-    foreign key(Required_Utensil) references Utensils(Untensil_ID)
+    foreign key(Cuisine_Type) references Cuisine(Cuisine_Type)
+
     
 );
 
 create table Ingredients(
     Ingredient_ID int not null,
     Ingredient_Name varchar2(100) not null,
-    price int,
+    price decimal(10,2),
     Category char(100) not null,
-    allergen int,
+   
     
     
-    primary key(Ingredient_ID),
-    foreign key(allergen) references Common_Allergies(Allergy_ID)
+    primary key(Ingredient_ID)
+    
 );
 
 create table recipe_ingredients(
@@ -39,7 +35,7 @@ create table recipe_ingredients(
     
     primary key(Recipe_ID,Ingredient_ID),
     foreign key(Recipe_ID) references Recipe(Recipe_ID),
-    foreign key (Ingredient_ID) references Ingredients(Ingredient-ID)
+    foreign key (Ingredient_ID) references Ingredients(Ingredient_ID)
 );
 
 create table Utensils(
@@ -47,7 +43,7 @@ create table Utensils(
     Utensil_name varchar2(150) not null,
     Type char(100) not null,
     Size int,
-    Matieral char(100),
+    Material char(100),
     
     primary key(Utensil_ID)
 );
@@ -86,13 +82,17 @@ create table Ingredient_Allergies (
 );
 
 create table Cuisine(
-    Cuisine_Type varchar2(100),
+    Cuisine_ID int not null,
+    Cuisine_Type varchar2(100) not null,
     Continent varchar2(100),
-    primary key (Cuisine_Type),
-        foreign key (Continent) references Continent(continent)
+    primary key (Cuisine_ID),
+        foreign key (Continent) references Continent(continent_ID)
 );
 
 create table Continent(
+    Continent_ID int,
     Continent varchar2(100),
-    Country varchar2(100)
+    Country varchar2(100),
+    
+    primary key (Continent_ID)
 );
