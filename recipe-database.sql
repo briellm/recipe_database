@@ -15,12 +15,12 @@ INSERT INTO Cuisine (Cuisine_ID, Cuisine_Type, Continent_ID) VALUES (3, 'America
 
 INSERT INTO Recipe (
     Recipe_ID, Recipe_Name, Cook_Time, Meal_Type, Spice_Level,
-    Difficulty_Level, Cook_Type, Cuisine_Type,
-    Ingredient_ID, Allergy, Required_Utensil
+    Difficulty_Level, Cook_Type, Cuisine_Type
+    
 ) VALUES (
     101, 'Spaghetti with Shrimp', 25, 'Dinner', 1,
-    2, 'Boil', 'Italian',
-    4, 4, 2
+    2, 'Boil', 1
+    
 );
 
 INSERT INTO Recipe (
@@ -28,7 +28,7 @@ INSERT INTO Recipe (
     Difficulty_Level, Cook_Type, Cuisine_Type
 ) VALUES (
     102, 'Peanut Stir Fry', 15, 'Lunch', 3,
-    3, 'Stir-Fry', 'Japanese'
+    3, 'Stir-Fry', 2
     
 );
 
@@ -38,7 +38,7 @@ INSERT INTO Recipe (
     
 ) VALUES (
     103, 'Milk Pancakes', 10, 'Breakfast', 0,
-    1, 'Pan-Fry', 'American'
+    1, 'Pan-Fry', 3
    
 );
 

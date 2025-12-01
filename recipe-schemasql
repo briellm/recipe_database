@@ -1,3 +1,14 @@
+/*
+    Authors: Briell Menezes, Jason Lauducci, Hannah Marsteller
+*/
+/*
+DROP TABLE Recipe CASCADE CONSTRAINTS;
+DROP TABLE Ingredients CASCADE CONSTRAINTS;
+DROP TABLE Utensils CASCADE CONSTRAINTS;
+DROP TABLE Common_Allergies CASCADE CONSTRAINTS;
+DROP TABLE Cuisine CASCADE CONSTRAINTS;
+DROP TABLE Continent CASCADE CONSTRAINTS;
+*/
 create table Recipe(
     Recipe_ID int not null,
     Recipe_name varchar2(150) not null,
@@ -6,11 +17,11 @@ create table Recipe(
     Spice_Level int not null,
     Difficulty_Level int not null,
     Cook_Type varchar2(50),
-    Cuisine_Type varchar2,
+    Cuisine int,
 
     
     primary key (Recipe_ID),
-    foreign key(Cuisine_Type) references Cuisine(Cuisine_Type)
+    foreign key(Cuisine) references Cuisine(Cuisine_ID)
 
     
 );
@@ -85,7 +96,7 @@ create table Cuisine(
     Cuisine_ID int not null,
     Cuisine_Type varchar2(100) not null,
     Continent int,
-    primary key (Cuisine_ID),
+    primary key (Cuisine_ID,Cuisine_Type),
         foreign key (Continent) references Continent(continent_ID)
 );
 
