@@ -6,8 +6,17 @@ create table Recipe(
     Spice_Level int not null,
     Difficulty_Level int not null,
     Cook_Type char(50),
+    Cuisine_Type varchar2 (100),
+    Ingredient_ID int,
+    Allergy int,
+    Required_Utensil int,
     
-    primary key (Recipe_ID, Recipe_Name)
+    primary key (Recipe_ID),
+    foreign key(Cuisine_Type) references Cuisine(Cuisine_Type),
+    foreign key(Ingredient_ID) references Ingredients(Ingredient_ID),
+    foreign key(Allergy) references Common_Allergies(Allergy_ID),
+    foreign key(Required_Utensil) references Utensils(Untensil_ID)
+    
 );
 
 create table Ingredients(
@@ -15,8 +24,11 @@ create table Ingredients(
     Ingredient_Name varchar2(100) not null,
     price int,
     Category char(100) not null,
+    allergen int,
     
-    primary key(Ingredient_ID, Ingredient_Name)
+    
+    primary key(Ingredient_ID),
+    foreign key(allergen) references Common_Allergies(Allergy_ID)
 );
 
 create table Utensils(
@@ -24,19 +36,26 @@ create table Utensils(
     Utensil_name varchar2(150) not null,
     Type char(100) not null,
     Size int,
-    Matieral char(100)
+    Matieral char(100),
+    
+    primary key(Utensil_ID)
 );
 
 create table Common_Allergies(
     Allergy_Type varchar2(150) not null,
-    Allergy_ID int not null
+    Allergy_ID int not null,
+    
+    primary key(Allergy_ID)
 );
 
 create table Cuisine(
     Cuisine_Type varchar2(100),
+    Continent varchar2(100),
+    primary key (Cuisine_Type),
+        foreign key (Continent) references Continent(continent)
 );
 
 create table Continent(
-    Continent char(100),
-    Country char(100)
+    Continent varchar2(100),
+    Country varchar2(100)
 );
