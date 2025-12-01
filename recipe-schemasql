@@ -6,7 +6,7 @@ create table Recipe(
     Spice_Level int not null,
     Difficulty_Level int not null,
     Cook_Type varchar2(50),
-    Cuisine_Type int,
+    Cuisine_Type varchar2,
 
     
     primary key (Recipe_ID),
@@ -84,7 +84,7 @@ create table Ingredient_Allergies (
 create table Cuisine(
     Cuisine_ID int not null,
     Cuisine_Type varchar2(100) not null,
-    Continent varchar2(100),
+    Continent int,
     primary key (Cuisine_ID),
         foreign key (Continent) references Continent(continent_ID)
 );
