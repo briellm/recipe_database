@@ -31,6 +31,17 @@ create table Ingredients(
     foreign key(allergen) references Common_Allergies(Allergy_ID)
 );
 
+create table recipe_ingredients(
+    Recipe_ID int not null,
+    Ingredient_ID int not null,
+    Quantity decimal(10,2),
+    Unit varchar2(20),
+    
+    primary key(Recipe_ID,Ingredient_ID),
+    foreign key(Recipe_ID) references Recipe(Recipe_ID),
+    foreign key (Ingredient_ID) references Ingredients(Ingredient-ID)
+);
+
 create table Utensils(
     Utensil_ID int not null,
     Utensil_name varchar2(150) not null,
@@ -41,11 +52,37 @@ create table Utensils(
     primary key(Utensil_ID)
 );
 
+create table Recipe_Utensils(
+    recipe_ID int not null,
+    utensil_id int not null,
+    
+    primary key(recipe_ID, utensil_ID),
+    foreign key(recipe_ID) references Recipe(recipe_ID),
+    foreign key (Utensil_ID) references Utensils(Utensil_ID)
+);
 create table Common_Allergies(
     Allergy_Type varchar2(150) not null,
     Allergy_ID int not null,
     
     primary key(Allergy_ID)
+);
+
+create table Recipe_Allergies (
+    Recipe_ID int not null,
+    Allergy_ID int not null,
+    
+    primary key (Recipe_ID, Allergy_ID),
+    foreign key (Recipe_ID) references Recipe(Recipe_ID),
+    foreign key (Allergy_ID) references Common_Allergies(Allergy_ID)
+);
+
+create table Ingredient_Allergies (
+    Ingredient_ID int not null,
+    Allergy_ID int not null,
+    
+    primary key (Ingredient_ID, Allergy_ID),
+    foreign key (Ingredient_ID) references Ingredients(Ingredient_ID),
+    foreign key (Allergy_ID) references Common_Allergies(Allergy_ID)
 );
 
 create table Cuisine(
