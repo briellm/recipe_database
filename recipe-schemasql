@@ -1,0 +1,42 @@
+create table Recipe(
+    Recipe_ID int not null,
+    Recipe_name varchar2(150) not null,
+    Cook_Time int not null,
+    Meal_Type char(50) not null,
+    Spice_Level int not null,
+    Difficulty_Level int not null,
+    Cook_Type char(50),
+    
+    primary key (Recipe_ID, Recipe_Name)
+);
+
+create table Ingredients(
+    Ingredient_ID int not null,
+    Ingredient_Name varchar2(100) not null,
+    price int,
+    Category char(100) not null,
+    
+    primary key(Ingredient_ID, Ingredient_Name)
+);
+
+create table Utensils(
+    Utensil_ID int not null,
+    Utensil_name varchar2(150) not null,
+    Type char(100) not null,
+    Size int,
+    Matieral char(100)
+);
+
+create table Common_Allergies(
+    Allergy_Type varchar2(150) not null,
+    Allergy_ID int not null
+);
+
+create table Cuisine(
+    Cuisine_Type varchar2(100),
+);
+
+create table Continent(
+    Continent char(100),
+    Country char(100)
+);
