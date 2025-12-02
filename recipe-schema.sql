@@ -106,4 +106,5 @@ create table Ingredient_Allergies (
     primary key (Ingredient_ID, Allergy_ID),
     foreign key (Ingredient_ID) references Ingredients(Ingredient_ID),
     foreign key (Allergy_ID) references Common_Allergies(Allergy_ID)
+
 );
