@@ -1,0 +1,25 @@
+
+-- Queries 
+
+-- gives all recipes
+SELECT * FROM Recipe;
+
+-- gives all ingredients 
+SELECT * FROM Ingredients;
+
+-- gives all utensils 
+SELECT * FROM Utensils;
+
+-- gives recipe count by country, numeric 
+SELECT co.Continent, COUNT(*) AS Total_Recipes
+FROM Continent co
+JOIN Cuisine cu ON co.Continent_ID = cu.Continent
+JOIN Recipe r ON cu.Cuisine_ID = r.Cuisine
+GROUP BY co.Continent;
+
+-- gives difficulty level by cuisine, numeric 
+SELECT cu.Cuisine_Type, r.Difficulty_Level, COUNT(*) AS Total_Recipes
+FROM Recipe r
+JOIN Cuisine cu ON r.Cuisine = cu.Cuisine_ID
+GROUP BY cu.Cuisine_Type, r.Difficulty_Level
+
