@@ -1,6 +1,6 @@
 # recipe_database
 
-##Overview
+## Overview
 This repository contains a relational database for managing recipes, ingredients, utensils, cuisines, allergies, and related relationships.
 
 ## Usage
