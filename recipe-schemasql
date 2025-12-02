@@ -1,14 +1,57 @@
 /*
     Authors: Briell Menezes, Jason Lauducci, Hannah Marsteller
 */
-/*
+
 DROP TABLE Recipe CASCADE CONSTRAINTS;
 DROP TABLE Ingredients CASCADE CONSTRAINTS;
 DROP TABLE Utensils CASCADE CONSTRAINTS;
 DROP TABLE Common_Allergies CASCADE CONSTRAINTS;
 DROP TABLE Cuisine CASCADE CONSTRAINTS;
 DROP TABLE Continent CASCADE CONSTRAINTS;
-*/
+
+create table Continent(
+    Continent_ID int,
+    Continent varchar2(100),
+    Country varchar2(100),
+    
+    primary key (Continent_ID)
+);
+create table Cuisine(
+    Cuisine_ID int not null,
+    Cuisine_Type varchar2(100) not null,
+    Continent int,
+    primary key (Cuisine_ID),
+        foreign key (Continent) references Continent(continent_ID)
+);
+create table Ingredients(
+    Ingredient_ID int not null,
+    Ingredient_Name varchar2(100) not null,
+    price decimal(10,2),
+    Category char(100) not null,
+   
+    
+    
+    primary key(Ingredient_ID)
+    
+);
+
+create table Common_Allergies(
+    Allergy_Type varchar2(150) not null,
+    Allergy_ID int not null,
+    
+    primary key(Allergy_ID)
+);
+
+create table Utensils(
+    Utensil_ID int not null,
+    Utensil_name varchar2(150) not null,
+    Utensil_Type varchar2(100) not null,
+    Utensil_Size int,
+    Material varchar2(100),
+    
+    primary key(Utensil_ID)
+);
+
 create table Recipe(
     Recipe_ID int not null,
     Recipe_name varchar2(150) not null,
@@ -26,17 +69,6 @@ create table Recipe(
     
 );
 
-create table Ingredients(
-    Ingredient_ID int not null,
-    Ingredient_Name varchar2(100) not null,
-    price decimal(10,2),
-    Category char(100) not null,
-   
-    
-    
-    primary key(Ingredient_ID)
-    
-);
 
 create table recipe_ingredients(
     Recipe_ID int not null,
@@ -49,16 +81,6 @@ create table recipe_ingredients(
     foreign key (Ingredient_ID) references Ingredients(Ingredient_ID)
 );
 
-create table Utensils(
-    Utensil_ID int not null,
-    Utensil_name varchar2(150) not null,
-    Type char(100) not null,
-    Size int,
-    Material char(100),
-    
-    primary key(Utensil_ID)
-);
-
 create table Recipe_Utensils(
     recipe_ID int not null,
     utensil_id int not null,
@@ -66,12 +88,6 @@ create table Recipe_Utensils(
     primary key(recipe_ID, utensil_ID),
     foreign key(recipe_ID) references Recipe(recipe_ID),
     foreign key (Utensil_ID) references Utensils(Utensil_ID)
-);
-create table Common_Allergies(
-    Allergy_Type varchar2(150) not null,
-    Allergy_ID int not null,
-    
-    primary key(Allergy_ID)
 );
 
 create table Recipe_Allergies (
@@ -90,20 +106,4 @@ create table Ingredient_Allergies (
     primary key (Ingredient_ID, Allergy_ID),
     foreign key (Ingredient_ID) references Ingredients(Ingredient_ID),
     foreign key (Allergy_ID) references Common_Allergies(Allergy_ID)
-);
-
-create table Cuisine(
-    Cuisine_ID int not null,
-    Cuisine_Type varchar2(100) not null,
-    Continent int,
-    primary key (Cuisine_ID,Cuisine_Type),
-        foreign key (Continent) references Continent(continent_ID)
-);
-
-create table Continent(
-    Continent_ID int,
-    Continent varchar2(100),
-    Country varchar2(100),
-    
-    primary key (Continent_ID)
 );
